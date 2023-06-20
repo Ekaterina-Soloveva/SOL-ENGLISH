@@ -1,0 +1,12 @@
+#docker-compose up
+version: "3.9"
+services:
+  postgres:
+    container_name: localPostgresSQLDBSolEnglish
+    image: postgres
+    environment:
+      POSTGRES_DB: "solEnglish_db"
+      POSTGRES_USER: "ekaterinasol"
+      POSTGRES_PASSWORD: "20754"
+    ports:
+      - "5432:5432"

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Статьи</title>
+  <script th:inline="javascript"></script>
+</head>
+<body>
+<div layout:fragment="content">
+  <div>
+    <hr class="hr"/>
+    <h3>Поиск статьи</h3>
+    <form method="POST" th:action="@{/articles/search}" th:object="${articleSearchForm}">
+      <div class="mt-0 row g-2">
+        <div class="col-md">
+          <div class="form-floating">
+            <input name="keyWords" type="text" class="form-control" id="keyWords" placeholder="Ключевое слово">
+            <label for="keyWords">Ключевое слово</label>
+          </div>
+        </div>
+        <div class="row g-2">
+          <button type="submit" class="btn btn-secondary">Найти статью</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <hr class="mt-3 hr"/>
+  <div class="mt-5">
+    <div class="row">
+      <div class="col">
+
+      <h1>Статьи</h1>
+  <div class="row">
+    <div class="col">
+      <a sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('TEACHER'))"
+         th:href="@{/articles/add}"
+         class="btn btn-success"
+         role="button"
+         style="float: right"
+         aria-disabled="true">Добавить статью</a>
+    </div>
+  </div>
+<!--  <div>-->
+<!--    <p th:each="article : ${articles}">-->
+<!--     <ul>-->
+<!--    <li th:text="${article.getTitle}">Название</li>-->
+<!--    <li th:text="${article.getKeyWords}">Ключевые слова</li>-->
+<!--  </ul>-->
+<!--    </p>-->
+<!--  </div>-->
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Название</th>
+      <th scope="col">Ключевые слова</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="article : ${articles}">
+      <td>
+        <a class="text-link text-blue" th:href="'/articles/' + ${article.getId()}" th:text="${article.getTitle()}"></a>
+      </td>
+      <td th:text="${article.getKeyWords}">Ключевые слова</td>
+      <td>
+        <div sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('TEACHER'))">
+          <a class="btn btn-sm btn-outline-success" th:href="'/articles/update/' + ${article.getId()}">Обновить</a>
+          <a th:if="${!article.isDeleted()}" class="btn btn-sm btn-outline-danger" th:href="'/articles/delete/' + ${article.getId()}"
+             onclick="return confirm('Вы действительно хотите удалить cтатью?');">Удалить</a>
+        </div>
+      </td>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>
+

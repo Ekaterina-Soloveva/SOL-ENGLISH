@@ -1,0 +1,28 @@
+.not-enough-film {
+    color: red;
+}
+
+
+.nav-link {
+    color: whitesmoke !important;
+}
+
+.btn-primary {
+    color: white !important;
+    background-color: green !important;
+    border-color: white !important;
+}
+
+.btn-primary:hover {
+    background-color: greenyellow !important;
+    border-color: white !important;
+    color: white !important;
+}
+
+.text-link {
+    text-decoration: none;
+}
+
+.text-link:hover {
+    color: #001445;
+}
