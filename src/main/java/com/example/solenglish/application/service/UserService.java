@@ -2,6 +2,7 @@ package com.example.solenglish.application.service;
 
 import com.example.solenglish.application.constants.MailConstants;
 import com.example.solenglish.application.dto.RoleDTO;
+import com.example.solenglish.application.dto.TopicDTO;
 import com.example.solenglish.application.dto.UserDTO;
 import com.example.solenglish.application.mapper.GenericMapper;
 import com.example.solenglish.application.model.User;
@@ -16,6 +17,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,6 +81,12 @@ public class UserService
         userDTO.setPassword(bCryptPasswordEncoder.encode(password));
         update(userDTO);
     }
+
+    public UserDTO updateUserTopicsDone(UserDTO updateObject) {
+        return mapper.toDTO(repository.save(mapper.toEntity(updateObject)));
+    }
+
+
 
 
 }

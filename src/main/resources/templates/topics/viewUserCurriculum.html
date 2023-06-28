@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Учебный план</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Мой учебный план</h1>
+    <em>Для вас составлен учебный план: темы объединены в модули, после изучения всех тем в модуле вы можете пройти
+        тест.</em>
+    <br>
+    <div th:each="unit : ${units}">
+        <div class="p-3 mb-2 bg-secondary text-white" th:text="${unit.getTitle()}"></div>
+        <table class="table align-middle">
+                        <thead>
+                        <tr>
+                            <th scope="col">Тема</th>
+                            <th scope="col">Содержание</th>
+                            <th scope="col">Пройдено</th>
+                        </tr>
+                        </thead>
+            <tbody>
+            <tr th:each="topic : ${unit.getTopics()}">
+                <td>
+                    <a class="text-link text-blue" th:href="'/curriculum/viewTopic/' + ${topic.getId()}" th:text="${topic.getTitle()}"></a>
+                </td>
+                <td th:text="${topic.getDescription()}"></td>
+                <td th:text="${topicsDone.contains(topic)} ? '✅' : ''" ></td>
+            </tr>
+            </tbody>
+        </table>
+        <br>
+        <span class="text-decoration-underline">Тест № </span>
+        <span class="text-decoration-underline" th:text="${unit.getTest().getTestNumber()}"></span>
+        <hr>
+        <br>
+    </div>
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -18,6 +18,11 @@ public class Topic extends GenericModel {
     @Column(name = "title", nullable = false)
     private String title;
 
+    @Column(name = "description")
+    private String description;
+
+    @Column(name = "level", nullable = false)
+    private String level;
 
     @ManyToOne
     @JoinColumn(name = "unit_id",
@@ -30,6 +35,7 @@ public class Topic extends GenericModel {
             joinColumns = @JoinColumn(name = "topic_id"), foreignKey = @ForeignKey(name = "FK_TOPICS_USERS"),
             inverseJoinColumns = @JoinColumn(name = "user_id"), inverseForeignKey = @ForeignKey(name ="FK_USERS_TOPICS"))
     private List<User> userTopicsDone;
+
 
 
 }

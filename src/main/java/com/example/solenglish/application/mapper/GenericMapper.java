@@ -3,6 +3,7 @@ package com.example.solenglish.application.mapper;
 
 import com.example.solenglish.application.dto.GenericDTO;
 import com.example.solenglish.application.model.GenericModel;
+import com.example.solenglish.application.model.Topic;
 import jakarta.annotation.PostConstruct;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
@@ -88,6 +89,7 @@ public abstract class GenericMapper<E extends GenericModel, D extends GenericDTO
      */
     @PostConstruct
     protected abstract void setupMapper();
+
 
 //    protected abstract List<Long> getIds(E entity);
 }

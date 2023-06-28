@@ -1,5 +1,7 @@
 package com.example.solenglish.application.dto;
 
+import com.example.solenglish.application.model.Unit;
+import com.example.solenglish.application.model.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,8 +19,8 @@ import java.util.List;
 public class TopicDTO extends GenericDTO{
 
     private String title;
-    private LevelDTO level;
-    private TestDTO test;
-
+    private String level;
+    private String description;
+    private List<Long> userTopicsDone;
 }
 

@@ -14,5 +14,9 @@ public class ArticleDTO extends GenericDTO {
 
     private String title;
     private String keyWords;
-    private String content;
+    private String author;
+    private String introduction;
+    private String body;
+    private String conclusion;
+
 }

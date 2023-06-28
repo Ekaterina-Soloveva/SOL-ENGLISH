@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Topic</title>
+</head>
+<body>
+<form layout:fragment="content">
+    <div>
+        <h2 th:text="${topic.getTitle()}"></h2>
+        <br>
+        <label for="description"><u>Краткое содержание: </u><em th:text="${topic.getDescription()}" type="text"
+                                                                id="description"></em>
+        </label>
+        <br>
+        <label for="level"><u>Уровень: </u><em th:text="${topic.getLevel()}" type="text" id="level"></em>
+        </label>
+        <br>
+        <br>
+        <!--        <img src="/images/english_language.jpg"  class="img-thumbnail"  alt="english">-->
+        <p>Практически во всей английской речи, устной и письменной, встречается оборот there is/there are.
+            Этот оборот широко распространен, поскольку в общении часто возникает необходимость сообщить о
+            местонахождении предметов, объектов или лиц. </p>
+        </p>
+
+        <div class="card">
+            <h5 class="p-3 mb-2 bg-info text-dark">Произношение</h5>
+            <!--            <h5 class="card-header" class="p-3 mb-2 bg-info text-dark">Произношение</h5>-->
+            <div class="card-body">
+                <p class="card-text"> Послушайте, как произносят конструкцию there’e носители языка. Повторите сначала
+                    медленно, а затем еще пару раз, увеличивая скорость.
+                    Следует помнить, что в аудио предоставлен учебный материал, где преподаватель говорит очень медленно
+                    и понятно. <br>
+                    В жизни носители произносят все слова и предложения гораздо быстрее.</p>
+                <p class="card-text">There is a dog in the garden. <br>
+                    There is an old man at the door. <br>
+                    There is some money on the table. <br>
+                    There is some sugar in the cupboard.</p> <br>
+                <audio controls>
+                    <source src="/audio/There-is-phrases-audio.mp3" type="audio/mpeg"/>
+                </audio>
+
+            </div>
+        </div>
+        <br>
+
+        <div class="card">
+            <h5 class="p-3 mb-2 bg-primary text-white">Перевод предложений с конструкцией</h5>
+            <div class="card-body">
+                <p class="card-text">Конструкции There is и There are используются для обозначения наличия чего-то в
+                    определенном месте, местоположения предметов или их количества.
+                    В этой конструкции слово there выступает формальным подлежащим и не несет никакого значения (его
+                    нельзя перевести как «тут», «там»),
+                    поэтому такие предложения переводятся с конца.</p>
+            </div>
+        </div>
+
+        <br>
+        <div class="card">
+            <h5 class="p-3 mb-2 bg-success text-white">Пример</h5>
+            <div class="card-body">
+                <p class="card-text">There is a mouse in the kitchen! – На кухне мышь! <br>
+                    There are some cookies in the box. – В коробке есть немного печенья.</p></p>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <h2>Правила использования конструкции в разных временах</h2>
+        <br>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Время</th>
+                <th scope="col">Past Simple(Прошедшее простое)</th>
+                <th scope="col">Present Simple(Настоящее простое)</th>
+                <th scope="col">Future Simple(Будущее простое)</th>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td class="table-success">there was + <u>ед.ч.</u> <br>
+                    there were + <u>мн.ч.</u> <br></td>
+                <td class="table-success">there is + <u>ед.ч.</u><br>there are + <u>мн.ч.</u></td>
+                <td class="table-success">there will be + <u>ед.ч./мн.ч.</u></td>
+            </tr>
+            <tr>
+                <th scope="row"> +</th>
+                <td>There was something strange in his room. – В его комнате было что-то странное.<br>
+                    <!--                        There were men in the room waiting for you. – В комнате были мужчины, которые тебя ждали.-->
+                </td>
+                <td>There is a cat in our garden. – В нашем дворе (какой-то) кот. <br>
+                    <!--                        There are two cats in our garden. – В нашем дворе (находится) два кота.-->
+                </td>
+                <td>I think there will be a lot of people at tomorrow’s concert. – Я думаю, что на завтрашнем концерте
+                    будет много людей.
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"> -</th>
+                <td>There wasn’t a cat in our garden. – В нашем дворе не было никакого кота.<br>
+                    <!--                        There were no men in the room waiting for you. – В комнате не было мужчин, которые тебя ждали.-->
+                </td>
+                <td>There isn't a cat in our garden. – В нашем дворе нет кота. <br>
+                    <!--                        There aren't two cats in our garden. – В нашем дворе нет двух котов.-->
+                </td>
+                <td>I think there won't (will + not) be a lot of people at tomorrow’s concert. – Я думаю, что на
+                    завтрашнем концерте не будет много людей.
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"> ?</th>
+                <td>Was there anybody in my room? – Был ли кто-то в моей комнате?<br>
+                    <!--                        Were there any pencils on my desk? – На моем столе были (какие-то) карандаши?-->
+                </td>
+                <td>Is there a cat outside? – На улице есть кот?<br>
+                    <!--                        Are there cats in our garden. – В нашем дворе есть коты-->
+                </td>
+                <td>Will there be a party next week? – На следующей неделе будет вечеринка?</td>
+            </tr>
+            </thead>
+        </table>
+
+        <h2>Упражнения</h2>
+
+        <div class="card">
+            <h5 class="p-3 mb-2 bg-warning text-dark">Exercise 1</h5>
+            <div class="card-body">
+                <div class="question">
+                    <p>There ... two children in the Browns' family.</p>
+                    <label><input type="radio" name="q1" value="0"> is</label><br/>
+                    <label><input type="radio" name="q1" value="0"> will</label><br/>
+                    <label><input type="radio" name="q1" value="0"> was</label><br/>
+                    <label><input type="radio" name="q1" value="1"> are</label><br/>
+                </div>
+                <br/>
+                <div class="question">
+                    <p>Hello! It's the first time I'm here. ... there a lift in your building?</p>
+                    <label><input type="radio" name="q2" value="0"> was</label><br/>
+                    <label><input type="radio" name="q2" value="0"> will be</label><br/>
+                    <label><input type="radio" name="q2" value="0"> are</label><br/>
+                    <label><input type="radio" name="q2" value="1"> is</label><br/>
+                </div>
+                <br/>
+                <div class="question">
+                    <p>There ... a person familiar to me, I'm not really sure, I'm going to come to you tomorrow</p>
+                    <label><input type="radio" name="q3"  value="1"> won't be</label><br/>
+                    <label><input type="radio" name="q3" value="0"> is </label><br/>
+                    <label><input type="radio" name="q3" value="0"> isn't</label><br/>
+                    <label><input type="radio" name="q3"  value="0"> aren't</label><br/>
+                </div>
+                <br/>
+
+                <button type="button" class="btn btn-warning" onclick="check_exercise();">Проверить</button>
+                <div id="comment"></div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+
+
+    <input type="checkbox" id="exercise" onclick="check();" value="" />
+    Все упражнения выполнены
+    <input type="submit" name="submit" class="submit" disabled="" value="Тема пройдена" />
+
+
+
+    <script src="/js/check_exercise.js"></script>
+</form>
+</body>
+</html>

@@ -2,6 +2,9 @@ package com.example.solenglish.application.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.Type;
+
+import java.util.List;
 
 
 @Entity
@@ -20,8 +23,16 @@ public class Article extends GenericModel {
     @Column(name = "key_words")
     private String keyWords;
 
-    @Column(name = "content")
-    private String content;
+    @Column(name = "author")
+    private String author;
 
+    @Column(name = "introduction", columnDefinition ="text")
+    private String introduction;
+
+    @Column(name = "body", columnDefinition ="text")
+    private String body;
+
+    @Column(name = "conclusion", columnDefinition ="text")
+    private String conclusion;
 
 }

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Прогресс</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Мой прогресс</h1>
+
+    <script src="http://code.highcharts.com/highcharts.js"></script>
+    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+    <div class="card chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+
+    </div>
+
+
+<script>
+    const ctx = document.getElementById("chart").getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ["rice", "yam", "tomato", "potato",
+                "beans", "maize", "oil"],
+            datasets: [{
+                label: 'food Items',
+                backgroundColor: 'rgba(161, 198, 247, 1)',
+                borderColor: 'rgb(47, 128, 237)',
+                data: [300, 400, 200, 500, 800, 900, 200],
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                    }
+                }]
+            }
+        },
+    });
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+

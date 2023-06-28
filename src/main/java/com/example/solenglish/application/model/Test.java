@@ -25,9 +25,12 @@ public class Test extends GenericModel {
     @Column(name = "number_of_tasks")
     private int numberOfTasks;
 
+    @Column(name = "number_of_correct_tasks")
+    private Integer numberOfCorrectTasks;
+
     @OneToMany(mappedBy = "test")
-    @Column(name = "unit")
-    private List<Unit> unit;
+    @Column(name = "units")
+    private List<Unit> units;
 
 
     @ManyToMany

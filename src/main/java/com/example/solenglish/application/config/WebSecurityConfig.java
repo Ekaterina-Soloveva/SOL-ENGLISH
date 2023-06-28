@@ -38,6 +38,7 @@ public class WebSecurityConfig {
             "/images/**",
             "/carousel/**",
             "/",
+            "/index",
             "/about",
             "/infoAboutCompany",
             "/error",
@@ -49,19 +50,25 @@ public class WebSecurityConfig {
             "/v3/api-docs/**"
     );
 
-    private final List<String> TOPICS_WHITE_LIST = List.of("/topics");
-
+    private final List<String> TOPICS_WHITE_LIST = List.of(
+            "/topics",
+                 "/topics/add",
+                 "/topics/update",
+                "/topics/delete"
+    );
     private final List<String> TESTS_PERMISIONS_LIST = List.of(
-            "/topics/add",
-            "/topics/update",
-            "/topics/delete"
+            "/tests/",
+            "/tests/entranceTest"
     );
 
     private final List<String> USER_WHITE_LIST = List.of(
             "/login",
             "/users/registration",
             "/users/remember-password",
-            "/users/change-password"
+            "/users/change-password",
+            "/users/viewUserCurriculum",
+            "/curriculum",
+            "/tests/entranceTest"
 
     );
 

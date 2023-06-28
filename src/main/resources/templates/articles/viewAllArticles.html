@@ -43,19 +43,12 @@
          aria-disabled="true">Добавить статью</a>
     </div>
   </div>
-<!--  <div>-->
-<!--    <p th:each="article : ${articles}">-->
-<!--     <ul>-->
-<!--    <li th:text="${article.getTitle}">Название</li>-->
-<!--    <li th:text="${article.getKeyWords}">Ключевые слова</li>-->
-<!--  </ul>-->
-<!--    </p>-->
-<!--  </div>-->
   <table class="table">
     <thead>
     <tr>
       <th scope="col">Название</th>
       <th scope="col">Ключевые слова</th>
+      <th scope="col">Автор</th>
     </tr>
     </thead>
     <tbody>
@@ -63,16 +56,24 @@
       <td>
         <a class="text-link text-blue" th:href="'/articles/' + ${article.getId()}" th:text="${article.getTitle()}"></a>
       </td>
-      <td th:text="${article.getKeyWords}">Ключевые слова</td>
+      <td th:text="${article.getKeyWords}"></td>
+      <td th:text="${article.getAuthor()}"></td>
       <td>
         <div sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('TEACHER'))">
-          <a class="btn btn-sm btn-outline-success" th:href="'/articles/update/' + ${article.getId()}">Обновить</a>
+<!--          <a class="btn btn-sm btn-outline-success" th:href="'/articles/update/' + ${article.getId()}">Обновить</a>-->
           <a th:if="${!article.isDeleted()}" class="btn btn-sm btn-outline-danger" th:href="'/articles/delete/' + ${article.getId()}"
              onclick="return confirm('Вы действительно хотите удалить cтатью?');">Удалить</a>
         </div>
       </td>
+      </td>
+
+
+
     </tbody>
   </table>
+</div>
+</div>
+</div>
 </div>
 </body>
 </html>

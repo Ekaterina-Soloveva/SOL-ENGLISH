@@ -4,65 +4,29 @@
       layout:decorate="~{layout}"
       lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Просмотр статьи</title>
+    <meta charset="UTF-8">
+    <title>Просмотр статьи</title>
 </head>
 <body>
 <form layout:fragment="content">
-  <div>
-    <h3 th:text="${article.getTitle()}"></h3>
-    <form class="row g-1">
-      <div class="mb-2 row">
-        <label for="keyWords" class="col-sm-2 col-form-label no-border">Ключевые слова</label>
-        <div class="col-sm-10">
-          <p th:text="${article.getKeyWords()}" type="text" readonly class="form-control-plaintext" id="keyWords">
-        </div>
-      </div>
-      <div class="mb-2 row">
-        <label for="content" class="col-sm-2 col-form-label"></label>
-        <div class="col-sm-10">
-          <p th:text="${article.getContent()}" class="form-control-plaintext" id="content">
-        </div>
-      </div>
-<!--      <div class="mb-2 row">-->
-<!--        <label class="col-sm-2 col-form-label">Копия:</label>-->
-<!--        <div class="col-sm-10">-->
-<!--          <a class="text-link text-blue" th:if="${film.getOnlineCopyPath()} != null" th:href="@{|/films/download?filmId=${film.id}|}">-->
-<!--            <span>Скачать фильм</span>-->
-<!--          </a>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="mb-2 row">-->
-<!--        <label for="country" class="col-sm-2 col-form-label">Страна:</label>-->
-<!--        <div class="col-sm-10">-->
-<!--          <p th:text="${film.getCountry()}" class="form-control-plaintext" id="country">-->
-<!--        </div>-->
-<!--      </div>-->
-<!--      <div class="mb-2 row">-->
-<!--        <label for="date" class="col-sm-2 col-form-label">Статья написана:</label>-->
-<!--        <div class="col-sm-10">-->
-<!--          <p th:text="${film.getPremierYear()}" class="form-control-plaintext" id="date">-->
-<!--        </div>-->
-<!--      </div>-->
-    </form>
-<!--    <hr class="hr"/>-->
-<!--    <form class="row g-1">-->
-<!--      <h4 class="mt-3 mb-3" th:text="'Информация о режиссере(ах)'"></h4>-->
-<!--      <div th:each="director : ${directors}">-->
-<!--        <div class="mb-2 row">-->
-<!--          <label for="fio" class="col-sm-2 col-form-label">ФИО:</label>-->
-<!--          <div class="col-sm-10">-->
-<!--            <a class="text-link text-blue" th:href="'/directors/' + ${director.getId()}" th:text="${director.getDirectorsFIO()}" id="fio"></a>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--    </form>-->
-<!--    <hr class="hr"/>-->
-<!--    <div class="mt-2">-->
-<!--      <a th:if="${film.getAmount() > 0}" sec:authorize="!hasRole('ADMIN')" class="btn btn-primary"-->
-<!--         th:href="'/rent/film/' + ${film.id}">Арендовать фильм</a>-->
-      <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
+    <div>
+        <h2 th:text="${article.getTitle()}"></h2>
+        <br>
+        <label for="author"><u>Автор статьи: </u><em th:text="${article.getAuthor()}" type="text" id="author"></em>
+        </label>
+        <br>
+        <label for="keyWords"><u>Ключевые слова: </u><em th:text="${article.getKeyWords()}" type="text"
+                                                         id="keyWords"></em></label>
+        <br>
+        <br>
+<!--        <img src="/images/english_language.jpg"  class="img-thumbnail"  alt="english">-->
+        <p th:text="${article.getIntroduction()}" id="introduction">
+        <p th:text="${article.getBody()}" id="body">
+        <p th:text="${article.getConclusion()}" id="conclusion">
+            <br>
+        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
+
     </div>
-  </div>
 </form>
 </body>
 </html>

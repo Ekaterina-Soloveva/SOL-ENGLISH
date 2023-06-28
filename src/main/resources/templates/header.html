@@ -1,11 +1,13 @@
 <div xmlns:th="http://www.thymeleaf.org"
      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
      th:fragment="header">
-    <nav class="navbar navbar-expand-lg" style="background-color: green">
+<!--    <nav class="navbar navbar-expand-lg" style="background-color:#2E8B57">-->
+    <nav class="navbar navbar-expand-lg" style="background-color:#4682B4">
+
         <div class="container-fluid">
             <a class="navbar-brand" href="/" style="color: whitesmoke">
                 <img src="/images/logo2.png" alt="SOL-ENGLISH" width="200px" height="100px">
-<!--                <img src="/images/logo1.jpg" alt="SOL-ENGLISH" width="100px" height="100px">-->
+                <!--                <img src="/images/logo1.jpg" alt="SOL-ENGLISH" width="100px" height="100px">-->
                 <span class="visually-hidden">SOL-ENGLISH</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -16,30 +18,35 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">
-                        <a class="nav-link active" aria-current="page" href="/my/books">Учебный план</a>
+                        <a class="nav-link active" aria-current="page"
+                           th:href="'/curriculum/' + ${#authentication.getPrincipal().getUserId()}">Учебный план</a>
                     </li>
                     <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">
-                        <a class="nav-link active" aria-current="page" href="/my/books">Прогресс</a>
+                        <a class="nav-link active" aria-current="page"
+                           th:href="'/progress/' + ${#authentication.getPrincipal().getUserId()}">Прогресс</a>
                     </li>
                     <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">
-                        <a class="nav-link active" aria-current="page" href="/my/books">Тесты</a>
+                        <a class="nav-link active" aria-current="page"
+                           th:href="'/tests/' + ${#authentication.getPrincipal().getUserId()}">Тесты</a>
                     </li>
-<!--                    <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">-->
-<!--                        <a class="nav-link active" aria-current="page" href="/my/books">Мой профиль</a>-->
-<!--                    </li>-->
+                    <!--                    <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">-->
+                    <!--                        <a class="nav-link active" aria-current="page" href="/my/books">Мой профиль</a>-->
+                    <!--                    </li>-->
                     <li class="nav-link">
                         <a class="nav-link active" aria-current="page" href="/articles">Блог</a>
                     </li>
                     <li class="nav-link">
                         <a class="nav-link active" aria-current="page" href="/about">О компании</a>
                     </li>
-                    <li sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('LIBRARIAN'))" class="nav-link">
+                    <li sec:authorize="isAuthenticated() && (hasRole('ADMIN') || hasRole('TEACHER'))" class="nav-link">
                         <a class="nav-link active" aria-current="page" href="/users">Пользователи</a>
                     </li>
                 </ul>
                 <div sec:authorize="isAuthenticated() && !hasRole('ADMIN')">
-                    <a class="nav-link active" style="float: right" th:href="'/users/profile/' + ${#authentication.getPrincipal().getUserId()}">Профиль</a>
+                    <a class="nav-link active" style="float: right"
+                       th:href="'/users/profile/' + ${#authentication.getPrincipal().getUserId()}">Профиль</a>
                 </div>
+
                 <form class="d-flex" sec:authorize="!isAuthenticated()">
                     <a href="/login" class="btn btn-primary" role="button" aria-disabled="true">Войти</a>
                 </form>

@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Entity
 @Table(name = "units")
@@ -18,10 +19,6 @@ public class Unit extends GenericModel {
     @Column(name = "title", nullable = false)
     private String title;
 
-    @ManyToOne
-    @JoinColumn(name = "level_id", nullable = false,
-            foreignKey = @ForeignKey(name = "FK_UNITS_LEVEL"))
-    private Level level;
 
     @OneToMany(mappedBy = "unit")
     @Column(name = "unit_topics")
@@ -33,5 +30,7 @@ public class Unit extends GenericModel {
     private Test test;
 
 
-
+    public void setTest(Optional<Test> byId) {
+        this.setTest(byId);
+    }
 }
