@@ -43,6 +43,16 @@ public class TopicService extends GenericService<Topic, TopicDTO> {
         return mapper.toDTOs(topicsByLevel);
     }
 
+    /**
+     *
+     * @param levels
+     * @return список тем, где уровень совпадет с параметрами
+     */
+    public List<TopicDTO> getTopicsByLevel(List<String> levels) {
+        List<Topic> topicsByLevel = levels.stream().map(e -> (Topic) topicRepository.findAllByLevelEqualsIgnoreCase(e)).toList();
+        return mapper.toDTOs(topicsByLevel);
+    }
+
 
     /**
      *

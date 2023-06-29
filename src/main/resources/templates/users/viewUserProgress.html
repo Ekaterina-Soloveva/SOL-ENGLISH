@@ -11,42 +11,92 @@
 <div layout:fragment="content">
     <h1>Мой прогресс</h1>
 
-    <script src="http://code.highcharts.com/highcharts.js"></script>
-    <script src="http://code.highcharts.com/modules/exporting.js"></script>
+    <p>Уровни владения иностранным языком в соотвествии с CEFR (Common European Framework of Reference)</p>
+    <table  class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col" style="width:30%">Изучено</th>
+            <th scope="col">Уровень</th>
+            <th scope="col">Название</th>
+            <th scope="col">Описание</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td> A1</td>
+            <td>Beginner</td>
+            <td>Понимаю и могу употребить в речи знакомые фразы и выражения, необходимые для выполнения конкретных задач. Могу представиться/ представить других, задавать/ отвечать на вопросы о месте жительства, знакомых, имуществе. Могу участвовать в несложном разговоре, если собеседник говорит медленно и отчетливо и готов оказать помощь.</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td> A2</td>
+            <td>Elementary</td>
+            <td>Понимаю отдельные предложения и часто встречающиеся выражения связанные с основными сферами жизни (например, основные сведения о себе и членах своей семьи, покупках, устройстве на работу и т.п.). Могу выполнить задачи, связанные с простым обменом информации на знакомые или бытовые темы. В простых выражениях могу рассказать о себе, своих родных и близких, описать основные аспекты повседневной жизни.</td>
+        </tr>
 
-    <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
-    <div class="card chart-container">
-        <canvas id="chart"></canvas>
-    </div>
+        <tr>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-warning" role="progressbar" aria-label="Warning example" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td> B1</td>
+            <td>Pre-Intermediate </td>
+            <td>Понимаю основные идеи четких сообщений, сделанных на литературном языке на разные темы, типично возникающие на работе, учебе, досуге и т.д. Умею общаться в большинстве ситуаций, которые могут возникнуть во время пребывания в стране изучаемого языка. Могу составить связное сообщение на известные или особо интересующие меня темы. Могу описать впечатления, события, надежды, стремления, изложить и обосновать свое мнение и планы на будущее.</td>
+        </tr>
 
-    </div>
+        <tr>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-danger" role="progressbar" aria-label="Danger example" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td> B2</td>
+            <td>Upper-Intermediate</td>
+            <td>Понимаю общее содержание сложных текстов на абстрактные и конкретные темы, в том числе узкоспециальные тексты. Говорю достаточно быстро и спонтанно, чтобы постоянно общаться с носителями языка без особых затруднений для любой из сторон. Я умею делать четкие, подробные сообщения на различные темы и изложить свой взгляд на основную проблему, показать преимущество и недостатки разных мнений.</td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td> C1</td>
+            <td>Advanced</td>
+            <td>Понимаю объемные сложные тексты на различную тематику, распознаю скрытое значение. Говорю спонтанно в быстром темпе, не испытывая затруднений с подбором слов и выражений. Гибко и эффективно использую язык для общения в научной и профессиональной деятельности. Могу создать точное , детальное, хорошо выстроенное сообщение на сложные темы, демонстрируя владение моделями организации текста, средствами связи и объединением его элементов.</td>
+        </tr>
+
+        <tr>
+            <td>
+                <div class="progress">
+                    <div class="progress-bar bg-info" role="progressbar" aria-label="Info example" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+            </td>
+            <td> C2</td>
+            <td>Proficiency</td>
+            <td>Понимаю практически любое устное или письменное сообщение, могу составить связный текст, опираясь на несколько устных и письменных источников. Говорю спонтанно с высоким темпом и высокой степенью точности, подчеркивая оттенки значений даже в самых сложных случаях.</td>
+        </tr>
+        </tbody>
+    </table>
 
 
-<script>
-    const ctx = document.getElementById("chart").getContext('2d');
-    const myChart = new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ["rice", "yam", "tomato", "potato",
-                "beans", "maize", "oil"],
-            datasets: [{
-                label: 'food Items',
-                backgroundColor: 'rgba(161, 198, 247, 1)',
-                borderColor: 'rgb(47, 128, 237)',
-                data: [300, 400, 200, 500, 800, 900, 200],
-            }]
-        },
-        options: {
-            scales: {
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                    }
-                }]
-            }
-        },
-    });
-</script>
+
+
+
+
+
+
+</div>
 </body>
 
 </html>

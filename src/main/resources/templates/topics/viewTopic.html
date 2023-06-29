@@ -9,7 +9,7 @@
 </head>
 <body>
 <form layout:fragment="content">
-    <div>
+
         <h2 th:text="${topic.getTitle()}"></h2>
         <br>
         <label for="description"><u>Краткое содержание: </u><em th:text="${topic.getDescription()}" type="text"
@@ -28,7 +28,6 @@
 
         <div class="card">
             <h5 class="p-3 mb-2 bg-info text-dark">Произношение</h5>
-            <!--            <h5 class="card-header" class="p-3 mb-2 bg-info text-dark">Произношение</h5>-->
             <div class="card-body">
                 <p class="card-text"> Послушайте, как произносят конструкцию there’e носители языка. Повторите сначала
                     медленно, а затем еще пару раз, увеличивая скорость.
@@ -73,7 +72,7 @@
 
         <h2>Правила использования конструкции в разных временах</h2>
         <br>
-        <table class="table">
+        <table class="table table-bordered">
             <thead>
             <tr>
                 <th scope="col">Время</th>
@@ -89,7 +88,7 @@
                 <td class="table-success">there will be + <u>ед.ч./мн.ч.</u></td>
             </tr>
             <tr>
-                <th scope="row"> +</th>
+                <th scope="row" class="text-center"> +</th>
                 <td>There was something strange in his room. – В его комнате было что-то странное.<br>
                     <!--                        There were men in the room waiting for you. – В комнате были мужчины, которые тебя ждали.-->
                 </td>
@@ -101,7 +100,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row"> -</th>
+                <th scope="row" class="text-center"> -</th>
                 <td>There wasn’t a cat in our garden. – В нашем дворе не было никакого кота.<br>
                     <!--                        There were no men in the room waiting for you. – В комнате не было мужчин, которые тебя ждали.-->
                 </td>
@@ -113,7 +112,7 @@
                 </td>
             </tr>
             <tr>
-                <th scope="row"> ?</th>
+                <th scope="row" class="text-center"> ?</th>
                 <td>Was there anybody in my room? – Был ли кто-то в моей комнате?<br>
                     <!--                        Were there any pencils on my desk? – На моем столе были (какие-то) карандаши?-->
                 </td>
@@ -125,54 +124,221 @@
             </thead>
         </table>
 
+        <br>
+        <br>
+
         <h2>Упражнения</h2>
 
-        <div class="card">
-            <h5 class="p-3 mb-2 bg-warning text-dark">Exercise 1</h5>
-            <div class="card-body">
-                <div class="question">
-                    <p>There ... two children in the Browns' family.</p>
-                    <label><input type="radio" name="q1" value="0"> is</label><br/>
-                    <label><input type="radio" name="q1" value="0"> will</label><br/>
-                    <label><input type="radio" name="q1" value="0"> was</label><br/>
-                    <label><input type="radio" name="q1" value="1"> are</label><br/>
-                </div>
-                <br/>
-                <div class="question">
-                    <p>Hello! It's the first time I'm here. ... there a lift in your building?</p>
-                    <label><input type="radio" name="q2" value="0"> was</label><br/>
-                    <label><input type="radio" name="q2" value="0"> will be</label><br/>
-                    <label><input type="radio" name="q2" value="0"> are</label><br/>
-                    <label><input type="radio" name="q2" value="1"> is</label><br/>
-                </div>
-                <br/>
-                <div class="question">
-                    <p>There ... a person familiar to me, I'm not really sure, I'm going to come to you tomorrow</p>
-                    <label><input type="radio" name="q3"  value="1"> won't be</label><br/>
-                    <label><input type="radio" name="q3" value="0"> is </label><br/>
-                    <label><input type="radio" name="q3" value="0"> isn't</label><br/>
-                    <label><input type="radio" name="q3"  value="0"> aren't</label><br/>
-                </div>
-                <br/>
+        <br>
+        <br>
 
-                <button type="button" class="btn btn-warning" onclick="check_exercise();">Проверить</button>
-                <div id="comment"></div>
 
+        <div class="container">
+            <div class="row">
+
+
+                <div class="col">
+                    <div class="card">
+                        <h5 class="p-3 mb-2 bg-warning text-dark">Exercise 1</h5>
+                        <div class="card-body">
+                            <div class="question1">
+                                <p>There ... two children in the Browns' family.</p>
+                                <label><input type="radio" name="q1" value="0"> is</label><br/>
+                                <label><input type="radio" name="q1" value="0"> will</label><br/>
+                                <label><input type="radio" name="q1" value="0"> was</label><br/>
+                                <label><input type="radio" name="q1" value="1"> are</label><br/>
+                            </div>
+                            <br/>
+                            <div class="question1">
+                                <p>Hello! It's the first time I'm here. ... there a lift in your building?</p>
+                                <label><input type="radio" name="q2" value="0"> was</label><br/>
+                                <label><input type="radio" name="q2" value="0"> will be</label><br/>
+                                <label><input type="radio" name="q2" value="0"> are</label><br/>
+                                <label><input type="radio" name="q2" value="1"> is</label><br/>
+                            </div>
+                            <br/>
+                            <div class="question1">
+                                <p>There ... a person familiar to me, I'm not really sure, I'm going to come to you
+                                    tomorrow</p>
+                                <label><input type="radio" name="q3" value="1"> won't be</label><br/>
+                                <label><input type="radio" name="q3" value="0"> is </label><br/>
+                                <label><input type="radio" name="q3" value="0"> isn't</label><br/>
+                                <label><input type="radio" name="q3" value="0"> aren't</label><br/>
+                            </div>
+                            <br/>
+
+                            <button type="button" class="btn btn-warning" onclick="check_exercise1();">Проверить
+                            </button>
+                            <div id="comment1"></div>
+                            <input type="hidden" id="exercise1_done" value=""/>
+
+                        </div>
+                    </div>
+                </div>
+
+
+                    <div class="col">
+                        <div class="card">
+                            <h5 class="p-3 mb-2 bg-success text-dark">Exercise 3</h5>
+                            <div class="card-body">
+                                <audio controls>
+                                    <source src="/audio/A1-21-There-is-There-are.mp3" type="audio/mpeg"/>
+                                </audio>
+                                <div class="question2">
+                                    <p>Conversation 1</p>
+                                    <label><input type="radio" name="q1" value="0"> Well, there is a mall, a cinema, and
+                                        there are a few parks.</label><br/>
+                                    <label><input type="radio" name="q1" value="0"> there’s a huge parking lot across
+                                        the street.</label><br/>
+                                    <label><input type="radio" name="q1" value="0"> there is some pasta in the
+                                        fridge.</label><br/>
+                                    <label><input type="radio" name="q1" value="1"> Excuse me, is there a gym in the
+                                        hotel?</label><br/>
+                                </div>
+                                <br/>
+                                <div class="question2">
+                                    <p>Conversation 2</p>
+                                    <label><input type="radio" name="q2" value="0"> Is there a changing room up
+                                        there?</label><br/>
+                                    <label><input type="radio" name="q2" value="0"> Excuse me, is there a gym in the
+                                        hotel?</label><br/>
+                                    <label><input type="radio" name="q2" value="0"> there is some pasta in the
+                                        fridge.</label><br/>
+                                    <label><input type="radio" name="q2" value="1"> Well, there is a mall, a cinema, and
+                                        there are a few parks.</label><br/>
+                                </div>
+                                <br/>
+                                <div class="question2">
+                                    <p>Conversation 3</p>
+                                    <label><input type="radio" name="q3" value="1"> there is some pasta in the
+                                        fridge.</label><br/>
+                                    <label><input type="radio" name="q3" value="0"> Is there a changing room up
+                                        there?</label><br/>
+                                    <label><input type="radio" name="q3" value="0"> Well, there is a mall, a cinema, and
+                                        there are a few parks.</label><br/>
+                                    <label><input type="radio" name="q3" value="0"> Excuse me, is there a gym in the
+                                        hotel?</label><br/>
+                                </div>
+                                <br/>
+
+                                <button type="button" class="btn btn-success" onclick="check_exercise2();">Проверить
+                                </button>
+                                <div id="comment2"></div>
+                                <input type="hidden" id="exercise2_done" value=""/>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="col">
+                    <div class="card">
+                        <h5 class="p-3 mb-2 bg-info text-dark">Exercise 2</h5>
+                        <div class="card-body">
+                            <div class="question3">
+                                <p>Is there anything new in the menu tonight?</p>
+                                <label><input type="radio" name="q1" value="0"> Yes, there was </label><br/>
+                                <label><input type="radio" name="q1" value="0"> Yes, there are</label><br/>
+                                <label><input type="radio" name="q1" value="0"> No, there wasn't</label><br/>
+                                <label><input type="radio" name="q1" value="1"> No, there isn't </label><br/>
+                            </div>
+                            <br/>
+                            <div class="question3">
+                                <p>Was there something strange in the way he talked to you?</p>
+                                <label><input type="radio" name="q2" value="0"> No, there isn't</label><br/>
+                                <label><input type="radio" name="q2" value="0"> Yes, there were</label><br/>
+                                <label><input type="radio" name="q2" value="0"> Yes, there is</label><br/>
+                                <label><input type="radio" name="q2" value="1"> No, wasn't</label><br/>
+                            </div>
+                            <br/>
+                            <div class="question3">
+                                <p>Will there be anybody I know?</p>
+                                <label><input type="radio" name="q3" value="1"> No, there won't be</label><br/>
+                                <label><input type="radio" name="q3" value="0"> Yes, there is </label><br/>
+                                <label><input type="radio" name="q3" value="0"> No, there isn't</label><br/>
+                                <label><input type="radio" name="q3" value="0"> Yes, there were</label><br/>
+                            </div>
+                            <br/>
+
+                            <button type="button" class="btn btn-info" onclick="check_exercise3();">Проверить</button>
+                            <div id="comment3"></div>
+                            <input type="hidden" id="exercise3_done" value=""/>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+        </div>
+
+        <hr>
+        <script src="/js/check_exercise.js"></script>
+
+        <br>
+        <br>
+
+        <div id="result"></div>
+        <button type="button" class="btn btn-success"  style="float: right" onclick="check_topic();">Тема пройдена
+        </button>
+
+
+<!--        <button type="button" class="btn-success"   style="float: right"onclick="check_topic();" href="'/curriculum/' + ${#authentication.getPrincipal().getUserId()}">-->
+<!--            Тема пройдена-->
+<!--        </button>-->
+
+<!--        <div class="btn" onclick="check_topic();">-->
+<!--            <a sec:authorize="isAuthenticated() && (hasRole('USER'))"-->
+<!--               th:href="'/curriculum/' + ${#authentication.getPrincipal().getUserId()}"-->
+<!--               class="btn btn-primary"-->
+<!--               role="button"-->
+<!--               style="float: right"-->
+<!--               aria-disabled="true">Тема пройдена</a>-->
+<!--        </div>-->
+
+
+        <div class="modal fade" id="topicDoneError" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Тема еще не пройдена</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Необходимо выполнить все упражнения, чтобы можно было считать тему пройденной.
+                            Перечитайте теоретический материал и попробуйте еще раз.
+                                            У вас обязательно получится!</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                    </div>
+                </div>
             </div>
         </div>
 
 
+<!--    <div class="modal fade" id="topicDone" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+<!--        <div class="modal-dialog">-->
+<!--            <div class="modal-content">-->
+<!--                <div class="modal-header">-->
+<!--                    <h5 class="modal-title">Тема пройдена</h5>-->
+<!--                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--                </div>-->
+<!--                <div class="modal-body">-->
+<!--                    <p>Вы отлично справляетесь! Так держать!</p>-->
+<!--                </div>-->
+<!--                <div class="modal-footer">-->
+<!--                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
 
-    </div>
 
-
-    <input type="checkbox" id="exercise" onclick="check();" value="" />
-    Все упражнения выполнены
-    <input type="submit" name="submit" class="submit" disabled="" value="Тема пройдена" />
-
-
-
-    <script src="/js/check_exercise.js"></script>
+        <br>
+        <br>
+        <script src="/js/check_exercise.js"></script>
 </form>
+<!--</div>-->
 </body>
 </html>

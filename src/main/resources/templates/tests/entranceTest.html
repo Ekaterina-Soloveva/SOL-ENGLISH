@@ -94,7 +94,6 @@
 </div>
 <br/>
 
-<!--    <input name="numberOfCorrectTasks"  id="score" class="form-control">-->
 
     <input type="hidden" name="id"
            th:value="${entranceTest.getId()}">
@@ -105,41 +104,15 @@
     <input type="hidden" name="numberOfTasks"
            th:value="${entranceTest.getNumberOfTasks()}">
 
+      <input type="hidden" id="score" name="numberOfCorrectTasks" value="" />
 
+    <button type="submit" class="btn btn-primary" onclick="check_answers();">Составить учебный план</button>
 
-    <button type="button" class="btn btn-primary" onclick="check_answers();">Проверить тест</button>
-    <div id="score"></div>
-
-    <input name="numberOfCorrectTasks">
-    <label class="form-label" name="numberOfCorrectTasks">Введите кол-во правильных ответов</label>
-
-
-
-<!--      <input class="form-control"  id="score" name="numberOfCorrectTasks" type="text" value=".. правильных из 10" aria-label="привер ввода только для чтения" readonly>-->
-
-<!--      <input type="hidden" name="numberOfCorrectTasks"-->
-<!--             th:value="score">-->
-
-<!--<button type="submit" class="btn btn-primary">Составить учебный план</button>-->
 
   </form>
 
 <br>
-  <script>
-    function check_answers() {
-      var score = 0;
-      var questions = document.querySelectorAll(".question");
-      for (var i = 0; i < questions.length; i++) {
-        var answer = questions[i].querySelector("input[type='radio']:checked");
-        if (answer)
-          score += +answer.value;
-      }
-
-      document.getElementById('score').textContent =
-              "Тест пройден! Правильных ответов " + score + " из " + questions.length + ".";
-      // document.getElementById('score').textContent = score;
-    }
-  </script>
+  <script src="/js/check_entrance_test.js"></script>
 </div>
 </body>
 </html>

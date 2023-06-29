@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en"
+       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+       layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Тесты</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h1>Контрольные работы</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col"> № </th>
+            <th scope="col" class="text-center">Описание</th>
+            <th scope="col" class="text-center">Кол-во заданий</th>
+            <th scope="col" class="text-center">Выполнено</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="test : ${userTests}"  class="table-success">
+            <td th:text=" ${test.getTestNumber()}"> </td>
+            <td th:text="${test.getDescription()}"></td>
+            <td th:text="${test.getNumberOfTasks()}" class="text-center"></td>
+            <td class="text-center">✓</td>
+        </tr>
+        <tr th:each="test : ${plannedTests}">
+            <td th:text=" ${test.getTestNumber()}"> </td>
+            <td th:text="${test.getDescription()}"></td>
+            <td th:text="${test.getNumberOfTasks()}" class="text-center"></td>
+            <td></td>
+        </tr>
+        </tbody>
+    </table>
+
+<br>
+<br>
+<hr>
+
+
+
+            <mark>Внимание</mark>
+         <p>Проверка входного тестирования - автоматическая, для остальных контрольных работ предлагается ручная проверка.
+                Исходя из того, что упражения в темах проверяются автоматически оптимально проходить контрольные работы с ручной проверкой,
+             чтобы выявить пробелы на раннем этапе, оценить степень освоения грамматических тем, а также исправить фонетические ошибки.</p>
+
+
+
+</div>
+</body>
+</html>
+

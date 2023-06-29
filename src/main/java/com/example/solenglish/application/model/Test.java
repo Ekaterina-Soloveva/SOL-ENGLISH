@@ -39,4 +39,7 @@ public class Test extends GenericModel {
             inverseJoinColumns = @JoinColumn(name = "user_id"), inverseForeignKey = @ForeignKey(name ="FK_USERS_TESTS"))
     private List<User> users;
 
+
+
+
 }

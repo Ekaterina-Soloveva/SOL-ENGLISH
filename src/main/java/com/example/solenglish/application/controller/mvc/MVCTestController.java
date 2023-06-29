@@ -13,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 
 @Controller
@@ -30,6 +32,11 @@ public class MVCTestController {
         this.userService = userService;
     }
 
+    /**
+     *
+     * @param model
+     * @return страницу с входным тестированием
+     */
     @GetMapping("/entranceTest")
     public String getEntranceTest(Model model) {
         TestDTO entranceTest = testService.getOne(1L);
@@ -37,17 +44,20 @@ public class MVCTestController {
         return "/tests/entranceTest";
     }
 
+    /**
+     *
+     * @param test
+     * @return страницу с учебным планом на основе тестирования
+     */
+
     @PostMapping("/entranceTest")
     public String getEntranceTest(@ModelAttribute("entranceTest") TestDTO test) {
 
         CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDTO user = userService.getOne(Long.valueOf(customUserDetails.getUserId()));
 
-        System.out.println(user.getTopicsDone()); //TODO:NLP???
-
-
-        if (!Objects.isNull(user.getTopicsDone())) {
-         testService.makeUserCurriculum(user, test.getNumberOfCorrectTasks());
+        if (Objects.isNull(user.getTopicsDone())) {
+         testService.makeUserCurriculum(user, test);
             return "redirect:/curriculum/ + customUserDetails.getUserId()";
         } else {
             return "redirect:/curriculum/ + customUserDetails.getUserId()";
@@ -56,5 +66,23 @@ public class MVCTestController {
 
     }
 
+    /**
+     *
+     * @param model
+     * @return страницу с пройденными и планируемыми контрольными работами
+     */
+
+    @GetMapping("/viewAllTests")
+    public String getAllTests(Model model) {
+        CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        UserDTO user = userService.getOne(Long.valueOf(customUserDetails.getUserId()));
+
+        List<TestDTO> userTests = testService.getTestsByIds(user.getTests());
+        List<TestDTO> plannedTests = testService.listAll().stream().filter(e -> !userTests.contains(e)).collect(Collectors.toList());
+
+        model.addAttribute("userTests", userTests);
+        model.addAttribute("plannedTests", plannedTests);
+        return "/tests/viewAllTests";
+    }
 
 }

@@ -42,6 +42,8 @@ public class MVCProgressController {
         List<TopicDTO> topicsDone = new ArrayList<>(topicService.getUserTopicsDoneDTO(user.getTopicsDone()));
         List<TopicDTO> topicsPlanned = topicService.getUserTopicsPlanned(topicsDone);
 
+
+
         model.addAttribute("topicsDone", topicsDone);
         model.addAttribute("topicsPlanned", topicsPlanned);
 
@@ -49,11 +51,5 @@ public class MVCProgressController {
     }
 
 
-
-    @GetMapping("/result")
-    public String getResult(Model model) {
-        model.addAttribute("entranceTestResultForm", new UserDTO());
-        return "registration";
-    }
 
 }

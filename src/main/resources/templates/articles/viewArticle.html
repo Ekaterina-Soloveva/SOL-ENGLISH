@@ -9,7 +9,7 @@
 </head>
 <body>
 <form layout:fragment="content">
-    <div>
+
         <h2 th:text="${article.getTitle()}"></h2>
         <br>
         <label for="author"><u>Автор статьи: </u><em th:text="${article.getAuthor()}" type="text" id="author"></em>
@@ -19,14 +19,21 @@
                                                          id="keyWords"></em></label>
         <br>
         <br>
-<!--        <img src="/images/english_language.jpg"  class="img-thumbnail"  alt="english">-->
-        <p th:text="${article.getIntroduction()}" id="introduction">
+
+        <p th:text="${article.getIntroduction()}" id="introduction"></p>
+
+<!--        <figure class="figure w-50 float-end m-3">-->
+<!--            <img src="/images/english_language.jpg"  class="figure-img img-fluid rounded img-thumbnail" alt="Alt text.">-->
+<!--&lt;!&ndash;            <figcaption class="figure-caption text-center">Visible text.</figcaption>&ndash;&gt;-->
+<!--        </figure>-->
+
         <p th:text="${article.getBody()}" id="body">
         <p th:text="${article.getConclusion()}" id="conclusion">
             <br>
         <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
 
-    </div>
+
+
 </form>
 </body>
 </html>

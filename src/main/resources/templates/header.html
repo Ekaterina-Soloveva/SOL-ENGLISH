@@ -7,7 +7,6 @@
         <div class="container-fluid">
             <a class="navbar-brand" href="/" style="color: whitesmoke">
                 <img src="/images/logo2.png" alt="SOL-ENGLISH" width="200px" height="100px">
-                <!--                <img src="/images/logo1.jpg" alt="SOL-ENGLISH" width="100px" height="100px">-->
                 <span class="visually-hidden">SOL-ENGLISH</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -26,8 +25,7 @@
                            th:href="'/progress/' + ${#authentication.getPrincipal().getUserId()}">Прогресс</a>
                     </li>
                     <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">
-                        <a class="nav-link active" aria-current="page"
-                           th:href="'/tests/' + ${#authentication.getPrincipal().getUserId()}">Тесты</a>
+                        <a class="nav-link active" aria-current="page" href="/tests/viewAllTests">Тесты</a>
                     </li>
                     <!--                    <li sec:authorize="isAuthenticated() && (hasRole('USER'))" class="nav-link">-->
                     <!--                        <a class="nav-link active" aria-current="page" href="/my/books">Мой профиль</a>-->
