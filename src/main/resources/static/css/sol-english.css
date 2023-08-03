@@ -9,10 +9,12 @@
     color: white !important;
     background-color: #4682B4 !important;
     border-color: white !important;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 .btn-primary:hover {
-    background-color: #FF6347!important;
+    background-color: #FF6347 !important;
     border-color: white !important;
     color: white !important;
 }

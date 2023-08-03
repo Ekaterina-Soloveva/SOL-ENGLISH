@@ -9,11 +9,11 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example</groupId>
-    <artifactId>sol-english</artifactId>
+    <artifactId>solenglish</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>sol-english</name>
-    <description>sol-english</description>
+    <name>solenglish</name>
+    <description>solenglish</description>
     <properties>
         <java.version>17</java.version>
     </properties>

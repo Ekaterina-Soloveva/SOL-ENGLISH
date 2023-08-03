@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en"
-       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
-       layout:decorate="~{layout}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorate="~{layout}">
 <head>
     <meta charset="UTF-8">
     <title>Пользователи сайта SOL-ENGLISH</title>
@@ -10,27 +10,95 @@
 </head>
 <body>
 <div layout:fragment="content">
-    <h1>Все пользователи сайта SOL-ENGLISH</h1>
+
+<h1>Все пользователи сайта SOL-ENGLISH</h1>
+
+
+    <form method="POST" th:action="@{/users/search}" th:object="${userSearchForm}">
+        <div class="mt-0 row g-2" sec:authorize="isAuthenticated() && (hasRole('ADMIN'))">
+            <h3>Поиск пользователя</h3>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input name="firstName" type="text" class="form-control" id="firstName" placeholder="Имя">
+                    <label for="firstName">Имя пользователя</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input name="lastName" type="text" class="form-control" id="lastName" placeholder="Фамилия">
+                    <label for="lastName">Фамилия пользователя</label>
+                </div>
+            </div>
+            <div class="col-md">
+                <div class="form-floating">
+                    <input name="login" type="text" class="form-control" id="login" placeholder="Логин">
+                    <label for="login">Логин пользователя</label>
+                </div>
+            </div>
+            <div class="row g-2">
+                <button type="submit" class="btn btn-primary">Найти пользователя</button>
+            </div>
+        </div>
+    </form>
+
+    <br>
+
+
+    <hr class="hr"/>
+
+    <br>
+    <br>
+
+
     <table class="table">
         <thead>
         <tr>
             <th scope="col">Имя</th>
+            <th scope="col">Отчество</th>
             <th scope="col">Фамилия</th>
             <th scope="col">Логин</th>
-            <th scope="col">Пароль</th>
             <th scope="col">Почта</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Тесты</th>
+            <th scope="col">Роль</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="user : ${users}">
+        <tr sec:authorize="isAuthenticated() && (hasRole('TEACHER'))" th:each="user : ${users}">
             <td th:text="${user.getFirstName}"></td>
+            <td th:text="${user.getMiddleName()}"></td>
             <td th:text="${user.getLastName}"></td>
             <td th:text="${user.getLogin}"></td>
-            <td th:text="${user.getPassword}"></td>
             <td th:text="${user.getEmail}"></td>
+            <td th:text="${user.getPhone}"></td>
+            <td th:text="${user.getTests()}"></td>
+            <td th:text="${user.getRole().getTitle()}"></td>
+        </tr>
+
+        <tr sec:authorize="isAuthenticated() && (hasRole('ADMIN'))" th:each="user : ${usersAndTeachers}">
+            <td th:text="${user.getFirstName}"></td>
+            <td th:text="${user.getMiddleName()}"></td>
+            <td th:text="${user.getLastName}"></td>
+            <td th:text="${user.getLogin}"></td>
+            <td th:text="${user.getEmail}"></td>
+            <td th:text="${user.getPhone}"></td>
+            <td th:text="${user.getTests()}"></td>
+            <td th:text="${user.getRole().getTitle()}"></td>
+            <td>
+                <a
+                        th:if="!${user.getRole().getId()== 2}"
+                        th:href="'/users/addTeacher/' + ${user.getId()}"
+                        class="btn btn-primary"
+                        role="button"
+                        aria-disabled="true">Сделать преподавателем</a>
+            </td>
         </tr>
         </tbody>
     </table>
+    <br>
+    <br>
+
+    <br>
 </div>
 </body>
 </html>

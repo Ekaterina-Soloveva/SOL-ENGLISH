@@ -7,4 +7,6 @@ public interface MailConstants {
           Для восстановления пароля перейдите по ссылке: http://localhost:8083/users/change-password?uuid=""";
 
     String MAIL_SUBJECT_FOR_REMEMBER_PASSWORD = "Восстановление пароля на сайте SOL-ENGLISH";
+
+    String MAIL_SUBJECT_FOR_CONTACT = "Письмо от пользователя сайта SOL-ENGLISH";
 }

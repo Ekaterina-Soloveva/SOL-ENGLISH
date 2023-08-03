@@ -1,10 +1,7 @@
 package com.example.solenglish.application.dto;
 
 import com.example.solenglish.application.model.Topic;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -13,6 +10,7 @@ import java.util.List;
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class UserDTO
         extends GenericDTO {
     private String login;

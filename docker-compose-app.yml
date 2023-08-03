@@ -1,0 +1,24 @@
+#docker-compose up
+version: "3.9"
+services:
+  deploy:
+    container_name: solenglishapp
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/solEnglish_db
+      - SPRING_DATASOURCE_USERNAME=ekaterinasol
+      - SPRING_DATASOURCE_PASSWORD=20754
+    networks:
+      java16-network:
+        aliases:
+          - solenglishapp
+networks:
+  java16-network:
+    name: 'our_java16_network'
+
+
+

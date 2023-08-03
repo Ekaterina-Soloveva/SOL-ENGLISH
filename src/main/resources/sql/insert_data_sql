@@ -52,6 +52,10 @@ INSERT INTO topics (id, title, level, unit_id)
 VALUES('9', 'Past Simple', 'A2 - Elementary', '4');
 INSERT INTO topics (id, title, level, unit_id)
 VALUES('10', 'Present Perfect','B1 - Intermediate', '4');
+INSERT INTO topics (id, title, level, unit_id)
+VALUES('11', 'Visiting the United Kingdom','B1 - Intermediate', '4');
+INSERT INTO topics (id, title, level, unit_id)
+VALUES('12', 'Conditionals','B1 - Intermediate', '4');
 
 
 

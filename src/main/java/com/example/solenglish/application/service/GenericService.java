@@ -53,6 +53,22 @@ public abstract class GenericService<E extends GenericModel, D extends GenericDT
     }
 
 
+    public void restore(final Long id) {
+        E obj = repository.findById(id).orElseThrow(() -> new NotFoundException("Объект не найден"));
+        unMarkAsDeleted(obj);
+        repository.save(obj);
+    }
+    public void markAsDeleted(GenericModel genericModel) {
+        genericModel.setDeleted(true);
+        genericModel.setDeletedWhen(LocalDateTime.now());
+    }
+
+    public void unMarkAsDeleted(GenericModel genericModel) {
+        genericModel.setDeleted(false);
+        genericModel.setDeletedWhen(null);
+    }
+
+
 }
 
 

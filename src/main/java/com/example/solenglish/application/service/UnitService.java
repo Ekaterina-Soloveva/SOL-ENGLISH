@@ -29,7 +29,7 @@ public class UnitService extends GenericService<Unit, UnitDTO> {
     }
 
     public List<UnitDTO> getAllUnits() {
-        List<Unit> allUnits= unitRepository.findAll();
+        List<Unit> allUnits = unitRepository.findAll();
         return mapper.toDTOs(allUnits);
     }
 

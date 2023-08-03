@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class TestMapper extends GenericMapper <Test, TestDTO>{
+public class TestMapper extends GenericMapper<Test, TestDTO> {
     private final TestRepository testRepository;
     private final UnitRepository unitRepository;
     private final UserRepository userRepository;

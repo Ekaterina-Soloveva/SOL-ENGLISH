@@ -16,7 +16,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class TopicMapper extends GenericMapper <Topic, TopicDTO>{
+public class TopicMapper extends GenericMapper<Topic, TopicDTO> {
 
 
     private final UserRepository userRepository;
@@ -41,7 +41,6 @@ public class TopicMapper extends GenericMapper <Topic, TopicDTO>{
     }
 
 
-
     @Override
     protected void setupMapper() {
         modelMapper.createTypeMap(Topic.class, TopicDTO.class)
@@ -49,8 +48,6 @@ public class TopicMapper extends GenericMapper <Topic, TopicDTO>{
         modelMapper.createTypeMap(TopicDTO.class, Topic.class)
                 .addMappings(m -> m.skip(Topic::setUserTopicsDone)).setPostConverter(toEntityConverter());
     }
-
-
 
 
     protected List<Long> getIds(Topic entity) {

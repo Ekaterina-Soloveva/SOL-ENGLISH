@@ -15,26 +15,28 @@
     <br>
     <div th:each="unit : ${units}">
         <div class="p-3 mb-2 bg-secondary text-white" th:text="${unit.getTitle()}"></div>
+        <!--        <div class="p-3 mb-2 bg-secondary text-white" th:text="${unit.getTitle()}"></div>-->
         <table class="table align-middle">
-                        <thead>
-                        <tr>
-                            <th scope="col">Тема</th>
-                            <th scope="col">Содержание</th>
-                            <th scope="col">Пройдено</th>
-                        </tr>
-                        </thead>
+            <thead>
+            <tr>
+                <th scope="col">Тема</th>
+                <th scope="col">Содержание</th>
+                <th scope="col">Пройдено</th>
+            </tr>
+            </thead>
             <tbody>
             <tr th:each="topic : ${unit.getTopics()}">
                 <td>
-                    <a class="text-link text-blue" th:href="'/curriculum/viewTopic/' + ${topic.getId()}" th:text="${topic.getTitle()}"></a>
+                    <a class="text-link text-blue" th:href="'/curriculum/viewTopic/' + ${topic.getId()}"
+                       th:text="${topic.getTitle()}"></a>
                 </td>
                 <td th:text="${topic.getDescription()}"></td>
-                <td th:text="${topicsDone.contains(topic)} ? '✅' : ''" ></td>
+                <td th:text="${topicsDone.contains(topic)} ? '✅' : ''"></td>
             </tr>
             </tbody>
         </table>
         <br>
-<!--        <a class="text-decoration-underline" href="/tests/viewAllTests">Тест № </a>-->
+        <!--        <a class="text-decoration-underline" href="/tests/viewAllTests">Тест № </a>-->
         <span class="text-decoration-underline">Тест № </span>
         <span class="text-decoration-underline" th:text="${unit.getTest().getTestNumber()}"></span>
         <hr>

@@ -15,46 +15,47 @@
          style="background-image: url('/images/eng-bg2.png');
       height: 100vh">
 
-    <h2>Учите английский самостоятельно!</h2>
-    <p>На сайте SOL-ENGLISH вы найдете инструменты для самостоятельного изучения языка:
+        <h2>Изучайте английский самостоятельно!</h2>
+        <p>На сайте SOL-ENGLISH вы найдете инструменты для самостоятельного изучения языка:
 
-    <ul>
-        <li>Теоретическая база</li>
-        <li>Лексические,грамматические и фонетические упражнения</li>
-        <li>Тесты - контрольные работы с ручной проверкой</li>
-    </ul>
+        <ul>
+            <li>Теоретическая база</li>
+            <li>Лексические,грамматические и фонетические упражнения</li>
+            <li>Тесты - контрольные работы с ручной проверкой</li>
+        </ul>
 
-    Чтобы начать, нужно зарегистрироваться и пройти тест, <br> по результатам которого для вас будет построен индивидуальный план.
+        Чтобы начать, нужно зарегистрироваться и пройти тест, <br> по результатам которого для вас будет построен
+        индивидуальный план.
         <br>
         <br>
-    <em>Не теряйте время и новые возможности!</em>
-    </p>
-    <form class="d-flex" sec:authorize="!isAuthenticated()">
-        <a href="/login" class="btn btn-primary" role="button" aria-disabled="true">Зарегистрироваться и пройти входное тестирование</a>
-    </form>
+        <em>Не теряйте время и новые возможности!</em>
+        </p>
+        <form class="d-flex" sec:authorize="!isAuthenticated()">
+            <a href="/users/registration" class="btn btn-primary" role="button" aria-disabled="true">Зарегистрироваться и пройти
+                входное тестирование</a>
+        </form>
 
 
-
-    <div class="col">
-        <div class="btn">
-            <a sec:authorize="isAuthenticated() && (hasRole('USER'))"
-               href="/tests/entranceTest"
-               class="btn btn-primary"
-               role="button"
-               style="float: left"
-               aria-disabled="true">Пройдите диагностику для составления индивидульного учебного плана</a>
+        <div class="col">
+            <div class="btn">
+                <a sec:authorize="isAuthenticated() && (hasRole('USER'))"
+                   href="/tests/entranceTest"
+                   class="btn btn-primary"
+                   role="button"
+                   style="float: left"
+                   aria-disabled="true">Пройдите диагностику для составления индивидульного учебного плана</a>
+            </div>
         </div>
-    </div>
-    <div class="col">
-        <div class="btn">
-            <a sec:authorize="isAuthenticated() && (hasRole('USER'))"
-               th:href="'/curriculum/' + ${#authentication.getPrincipal().getUserId()}"
-               class="btn btn-primary"
-               role="button"
-               style="float: left"
-               aria-disabled="true">Пропустить диагностику и начать с нуля</a>
+        <div class="col">
+            <div class="btn">
+                <a sec:authorize="isAuthenticated() && (hasRole('USER'))"
+                   th:href="'/curriculum/' + ${#authentication.getPrincipal().getUserId()}"
+                   class="btn btn-primary"
+                   role="button"
+                   style="float: left"
+                   aria-disabled="true">Пропустить диагностику и начать с нуля</a>
+            </div>
         </div>
-    </div>
 
     </div>
 </div>

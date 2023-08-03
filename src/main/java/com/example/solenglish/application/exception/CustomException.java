@@ -1,8 +1,8 @@
 package com.example.solenglish.application.exception;
 
-public class MyDeleteException
+public class CustomException
         extends Exception {
-    public MyDeleteException(final String message) {
+    public CustomException(final String message) {
         super(message);
     }
 }

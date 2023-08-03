@@ -16,15 +16,4 @@ public interface UnitRepository extends GenericRepository<Unit>{
 
 
 
-
-
-
-//    @Query(nativeQuery = true,
-//            value = """
-//            select distinct email
-//            from users u join book_rent_info bri on u.id = bri.user_id
-//            where bri.return_date < now()
-//            and bri.returned = false
-//            and u.is_deleted = false
-//            """)
 }

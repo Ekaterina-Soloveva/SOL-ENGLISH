@@ -5,6 +5,8 @@ import com.example.solenglish.application.model.GenericModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 
+import java.util.List;
+
 /**
  * Абстрактный репозиторий
  * Необходим для работы абстрактного сервиса,

@@ -2,8 +2,8 @@ package com.example.solenglish.application.controller.mvc;
 
 import com.example.solenglish.application.dto.ArticleDTO;
 import com.example.solenglish.application.service.ArticleService;
+import javassist.NotFoundException;
 import lombok.extern.slf4j.Slf4j;
-import com.example.solenglish.application.exception.MyDeleteException;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -21,7 +22,7 @@ public class MVCArticleController {
     private final ArticleService articleService;
 
     public MVCArticleController(ArticleService articleService) {
-        this. articleService = articleService;
+        this.articleService = articleService;
     }
 
     @GetMapping
@@ -52,28 +53,44 @@ public class MVCArticleController {
     }
 
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) throws MyDeleteException {
+    public String delete(@PathVariable Long id) {
         articleService.deleteSoft(id);
         return "redirect:/articles";
     }
 
+    @GetMapping("/restore/{id}")
+    public String restore(@PathVariable Long id) {
+        articleService.restore(id);
+        return "redirect:/articles";
+    }
+
+    @GetMapping("/update/{id}")
+    public String update(@PathVariable Long id,
+                         Model model) {
+        model.addAttribute("article", articleService.getOne(id));
+        return "articles/updateArticle";
+    }
+
+    @PostMapping("/update/{id}")
+    public String update(@ModelAttribute("articleForm") ArticleDTO articleDTO) {
+        articleService.update(articleDTO);
+        return "redirect:/articles";
+    }
+
+
     @PostMapping("/search")
     public String searchArticles(@RequestParam(value = "page", defaultValue = "1") int page,
-                                @RequestParam(value = "size", defaultValue = "5") int pageSize,
-                                @ModelAttribute("articleSearchForm") ArticleDTO articleDTO,
-                                Model model) {
+                                 @RequestParam(value = "size", defaultValue = "5") int pageSize,
+                                 @ModelAttribute("articleSearchForm") ArticleDTO articleDTO,
+                                 Model model) {
         if (StringUtils.hasText(articleDTO.getKeyWords()) || StringUtils.hasLength(articleDTO.getKeyWords())) {
             PageRequest pageRequest = PageRequest.of(page - 1, pageSize, Sort.by(Sort.Direction.ASC, "title"));
             model.addAttribute("articles", articleService.searchArticles(articleDTO.getKeyWords().trim(), pageRequest));
             return "articles/viewAllArticles";
-        }
-        else {
+        } else {
             return "redirect:/articles";
         }
     }
-
-
-
 
 
 }

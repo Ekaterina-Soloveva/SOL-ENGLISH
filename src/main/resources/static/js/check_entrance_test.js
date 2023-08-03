@@ -1,4 +1,3 @@
-
 function check_answers() {
     var score = 0;
     var questions = document.querySelectorAll(".question");

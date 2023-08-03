@@ -1,9 +1,11 @@
 package com.example.solenglish.application.service;
 
+import com.example.solenglish.application.constants.Errors;
 import com.example.solenglish.application.dto.TestDTO;
 import com.example.solenglish.application.dto.TopicDTO;
 import com.example.solenglish.application.dto.UnitDTO;
 import com.example.solenglish.application.dto.UserDTO;
+import com.example.solenglish.application.exception.CustomException;
 import com.example.solenglish.application.mapper.GenericMapper;
 import com.example.solenglish.application.model.Test;
 import com.example.solenglish.application.model.Topic;
@@ -12,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -34,26 +37,27 @@ public class TestService extends GenericService<Test, TestDTO> {
 
 
     /**
-     *
      * @param updateObject
      * @param test
      * @return пользователя с обновленным списком усвоенных тем по результатам входного тестирования
      */
-    public UserDTO makeUserCurriculum(UserDTO updateObject, TestDTO test) {
-        List<TopicDTO> topicsDone = checkEntranceTest(test.getNumberOfTasks(), test.getNumberOfCorrectTasks());
+    public UserDTO makeUserCurriculum(UserDTO updateObject, TestDTO test) throws CustomException {
 
-        updateObject.setTopicsDone(topicsDone.stream().map(e -> e.getId().longValue()).toList());
-        update(test);
-        List<Long> testsDone= new ArrayList<>();
-        testsDone.add(test.getId());
-        updateObject.setTests(testsDone);
-        userService.updateUserTopicsDone(updateObject);
-        return updateObject;
+        if (updateObject.getTopicsDone().isEmpty()) {
+            List<TopicDTO> topicsDone = checkEntranceTest(test.getNumberOfTasks(), test.getNumberOfCorrectTasks());
+            updateObject.setTopicsDone(topicsDone.stream().map(e -> e.getId().longValue()).toList());
+            List<Long> testsDone = new ArrayList<>();
+            testsDone.add(test.getId());
+            updateObject.setTests(testsDone);
+            userService.updateUserTopicsDone(updateObject);
+            return updateObject;
+        } else {
+            throw new CustomException(Errors.Tests.ENTRANCE_TEST_ERROR);
+        }
     }
 
 
     /**
-     *
      * @param numberOfQuestions
      * @param correctAnswersNumber
      * @return Список усвоенных тем по результатам входного тестирования
@@ -61,24 +65,14 @@ public class TestService extends GenericService<Test, TestDTO> {
     private List<TopicDTO> checkEntranceTest(int numberOfQuestions, int correctAnswersNumber) {
         int difference = numberOfQuestions - correctAnswersNumber;
         List<TopicDTO> topicsDone = new ArrayList<>();
-        if (difference == 1 || difference == 2) {
-            topicsDone.addAll(topicService.getTopicsByLevel("B2 - Upper-Intermediate"));
-            topicsDone.addAll(topicService.getTopicsByLevel("B1 - Intermediate"));
-            topicsDone.addAll(topicService.getTopicsByLevel("A2 - Elementary"));
-            topicsDone.addAll(topicService.getTopicsByLevel("A1 - Beginner"));
-        } else if (difference == 4 || difference == 3) {
-            topicsDone.addAll(topicService.getTopicsByLevel("B1 - Intermediate"));
-            topicsDone.addAll(topicService.getTopicsByLevel("A2 - Elementary"));
-            topicsDone.addAll(topicService.getTopicsByLevel("A1 - Beginner"));
-        } else if (difference == 5 || difference == 6) {
-            topicsDone.addAll(topicService.getTopicsByLevel("A2 - Elementary"));
-            topicsDone.addAll(topicService.getTopicsByLevel("A1 - Beginner"));
-        } else if (difference == 7 || difference == 8) {
-            topicsDone.addAll(topicService.getTopicsByLevel("A1 - Beginner"));
-        } else {
+        if (difference > 8)
             topicsDone.addAll(Collections.emptyList());
-        }
-
+        if (difference < 8)
+            topicsDone.addAll(topicService.getTopicsByLevel("A1 - Beginner"));
+        if (difference < 5)
+            topicsDone.addAll(topicService.getTopicsByLevel("A2 - Elementary"));
+        if (difference < 3)
+            topicsDone.addAll(topicService.getTopicsByLevel("B1 - Intermediate"));
         return topicsDone;
     }
 

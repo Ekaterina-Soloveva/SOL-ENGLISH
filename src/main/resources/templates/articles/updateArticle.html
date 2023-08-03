@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Редактировать статью</title>
+</head>
+<body>
+<div layout:fragment="content">
+    <h3 class="mt-3 mb-3">Добавить статью</h3>
+    <form style="max-width: 50vw" method="POST" th:action="@{'/articles/update/' + ${article.getId()}}" th:object="${articleForm}">
+        <div class="mb-3">
+            <label for="title" class="form-label">Название</label>
+            <!--            Название поля инпута должно строго соответствовать названию поля класса (DTO)-->
+            <input name="title" type="text" class="form-control" id="title"  th:value="${article.getTitle()}">
+        </div>
+        <div class="mb-3">
+            <label for="keyWords" class="form-label">Ключевые слова</label>
+            <input name="keyWords" type="text" class="form-control" id="keyWords" th:value="${article.getKeyWords()}">
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Имя, фамилия автора</label>
+            <input name="author" type="text" class="form-control" id="author" th:value="${article.getAuthor()}">
+        </div>
+        <div class="mb-3">
+            <label for="introduction" class="form-label">Вводная часть</label>
+            <!--      <input name="content" type="text" class="form-control" id="content">-->
+            <textarea class="form-control" name="introduction" id="introduction" rows="5" th:value="${article.getIntroduction()}"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="body" class="form-label">Основная часть</label>
+            <textarea class="form-control" name="body" id="body" rows="10" th:value="${article.getBody()}"></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="conclusion" class="form-label">Заключительная часть</label>
+            <textarea class="form-control" name="conclusion" id="conclusion" rows="5" th:value="${article.getConclusion()}"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Обновить</button>
+        <button type="button" class="btn btn-secondary" onclick="window.history.back()">Назад</button>
+    </form>
+</div>
+</body>
+</html>

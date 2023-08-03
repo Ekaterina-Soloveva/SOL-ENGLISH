@@ -4,17 +4,16 @@ package com.example.solenglish.application.dto;
 import com.example.solenglish.application.model.Unit;
 import com.example.solenglish.application.model.User;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
+@AllArgsConstructor
 public class TestDTO extends GenericDTO {
 
     private Integer testNumber;
@@ -23,4 +22,6 @@ public class TestDTO extends GenericDTO {
     private Integer numberOfCorrectTasks;
     private List<Long> units;
     private List<Long> users;
+
+
 }

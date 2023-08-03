@@ -3,41 +3,35 @@
      th:fragment="footer">
     <!-- Footer -->
 
-<!--    <footer class="footer bg-dark w-100 py-3 bottom-0 start-50 translate-middle-x text-white" style="background-color: #404344;">-->
-
-    <footer  class="d-flex flex-column h-100 text-white" style="background-color: #404344;">
+    <footer class="d-flex flex-column h-100 text-white" style="background-color: #4682B4;">
         <!-- Grid container -->
-            <!-- Section: Social media -->
-<!--            <section class="mb-4">-->
+        <!-- Section: Social media -->
+        <!--            <section class="mb-4">-->
 
         <!-- Grid container -->
         <div class="container p-4 pb-0">
-                <form class="d-flex" sec:authorize="isAnonymous()">
-                    <p class="d-flex justify-content-center align-items-center">
-                        <span class="me-3">Учи английский самостоятельно</span>
-                        <a href="/users/registration"  class="btn btn-outline-light btn-rounded">Регистрация</a>
-                    </p>
-                </form>
-<!--                <form class="d-flex" sec:authorize="isAuthenticated()">-->
-<!--                    <p class="d-flex justify-content-center align-items-center">-->
-<!--                        <span class="me-3">О компании</span>-->
-<!--                        <a href="/users/registration"  class="btn btn-outline-light btn-rounded">подробнее</a>-->
-<!--                    </p>-->
-<!--                </form>-->
-                <form class="d-flex" sec:authorize="isAuthenticated()">
-                    <p class="d-flex justify-content-center align-items-center">
-                        <span class="me-3">Есть вопросы?</span>
-                        <a href="mailto:ekaterina_rasyuk@mail.ru"  target="_top" class="btn btn-outline-light btn-rounded">Напишите нам</a>
-                    </p>
-                </form>
+            <form class="d-flex" sec:authorize="isAnonymous()">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Учи английский самостоятельно</span>
+                    <a href="/users/registration" class="btn btn-outline-light btn-rounded">Регистрация</a>
+                </p>
+            </form>
+
+            <form class="d-flex" sec:authorize="isAuthenticated()">
+                <p class="d-flex justify-content-center align-items-center">
+                    <span class="me-3">Есть вопросы?</span>
+                    <a href="/contact" class="btn btn-outline-light btn-rounded">Напишите
+                        нам</a>
+                </p>
+            </form>
             </section>
             <!-- Section: CTA -->
         </div>
         <!-- Grid container -->
 
         <!-- Copyright -->
-        <div  class="d-flex flex-column h-100 text-center p-3 style=background-color: rgba(0, 0, 0, 0.2);">
-<!--        <div  class="d-flex flex-column h-100" class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">-->
+        <div class="d-flex flex-column h-100 text-center p-3 style=background-color: rgba(0, 0, 0, 0.2);">
+            <!--        <div  class="d-flex flex-column h-100" class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">-->
             © 2023 Copyright:
             <a class="text-white" href="/">Java 16</a>
         </div>

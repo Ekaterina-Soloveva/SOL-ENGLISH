@@ -29,7 +29,6 @@ public class Unit extends GenericModel {
             foreignKey = @ForeignKey(name = "FK_UNIT_TEST"))
     private Test test;
 
-
     public void setTest(Optional<Test> byId) {
         this.setTest(byId);
     }

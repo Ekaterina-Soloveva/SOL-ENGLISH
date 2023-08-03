@@ -56,12 +56,14 @@ public class MVCCurriculumController {
     @GetMapping("/viewTopic/{id}")
     public String getOneTopic(@PathVariable Long id, Model model) {
         model.addAttribute("topic", topicService.getOne(id));
+        System.out.println("stage1");
         return "topics/viewTopic";
     }
 
     @PostMapping("/viewTopic/{id}")
-    public String getOneTopic(@ModelAttribute("topicForm")
+    public String getOneTopic(@ModelAttribute("topic") TopicDTO topicDone,
                               @PathVariable Long id) {
+
         CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDTO user = userService.getOne(Long.valueOf(customUserDetails.getUserId()));
 
@@ -70,7 +72,6 @@ public class MVCCurriculumController {
         user.setTopicsDone(userTopicsDone);
 
         userService.update(user);
-        return "redirect:/topics/viewUserCurriculum";
+        return "redirect:/curriculum/ + customUserDetails.getUserId()";
     }
-
 }

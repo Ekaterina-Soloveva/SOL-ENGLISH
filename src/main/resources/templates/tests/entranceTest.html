@@ -1,118 +1,142 @@
 <!DOCTYPE html>
 <html
- xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-       layout:decorate="~{layout}"
-    lang="en">
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout}"
+        lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Входное тестирование</title>
+    <script th:inline="javascript">
+        let flag = [[${exception}]]; //переменная-флаг в thymeleaf
+        window.onload = () => {
+            if (flag) new bootstrap.Modal(document.getElementById('errorModal'), {keyboard: false}).show()
+        };
+    </script>
+
 </head>
 <body>
 <div layout:fragment="content">
-<h2>Входное тестирование</h2>
+    <h2>Входное тестирование</h2>
 
-  <form enctype="multipart/form-data"  method="POST" th:action="@{/tests/entranceTest}" th:object="${entranceTest}">
+    <form enctype="multipart/form-data" method="POST" th:action="@{/tests/entranceTest}" th:object="${entranceTest}">
 
-<div class="question">
-  <p>She said they ... going to leave for Turkey</p>
-  <label><input type="radio" name="q1" value="0"> will</label><br/>
-  <label><input type="radio" name="q1" value="1"> were</label><br/>
-  <label><input type="radio" name="q1" value="0"> are</label><br/>
-  <label><input type="radio" name="q1" value="0"> is</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>If you ... at two, you will be there before dark.</p>
-  <label><input type="radio" name="q2" value="0"> left</label><br/>
-  <label><input type="radio" name="q2" value="1"> leave</label><br/>
-  <label><input type="radio" name="q2" value="0"> have left</label><br/>
-  <label><input type="radio" name="q2" value="0"> will leave</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>You went to the stadium with him ,..?</p>
-  <label><input type="radio" name="q3" value="0"> did you</label><br/>
-  <label><input type="radio" name="q3" value="0"> were you</label><br/>
-  <label><input type="radio" name="q3" value="1"> didn't you</label><br/>
-  <label><input type="radio" name="q3" value="0"> isn't it</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>Let me introduce ..., my name is David Smith.</p>
-  <label><input type="radio" name="q4" value="1"> myself</label><br/>
-  <label><input type="radio" name="q4" value="0"> me</label><br/>
-  <label><input type="radio" name="q4" value="0"> himself</label><br/>
-  <label><input type="radio" name="q4" value="0"> ourselves</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>I wish I ... all the exams to enter the university.</p>
-  <label><input type="radio" name="q5" value="0"> have passed</label><br/>
-  <label><input type="radio" name="q5" value="0"> didn't passed</label><br/>
-  <label><input type="radio" name="q5" value="1"> had passed</label><br/>
-  <label><input type="radio" name="q5" value="0"> hadn't passed</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>What ...?</p>
-  <label><input type="radio" name="q6" value="0"> she wants</label><br/>
-  <label><input type="radio" name="q6" value="1"> does she want</label><br/>
-  <label><input type="radio" name="q6" value="0"> is she want</label><br/>
-  <label><input type="radio" name="q6" value="0"> did she wanted</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>If you asked ... me, I would answer ... this question: I'd like to go there ... bus</p>
-  <label><input type="radio" name="q7" value="0">  -, on, at</label><br/>
-  <label><input type="radio" name="q7" value="1">  -, -, by</label><br/>
-  <label><input type="radio" name="q7" value="0">  for, -, by</label><br/>
-  <label><input type="radio" name="q7" value="0">  -, -, on</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>Alex ... here for six months</p>
-  <label><input type="radio" name="q8" value="1"> has been working</label><br/>
-  <label><input type="radio" name="q8" value="0"> is working</label><br/>
-  <label><input type="radio" name="q8" value="0"> had been working</label><br/>
-  <label><input type="radio" name="q8" value="0"> worked</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>We would never have had the accident if you ... so fast.</p>
-  <label><input type="radio" name="q9" value="0"> didn't drive</label><br/>
-  <label><input type="radio" name="q9" value="0"> haven't driven</label><br/>
-  <label><input type="radio" name="q9" value="1"> hadn't driven</label><br/>
-  <label><input type="radio" name="q9" value="0"> weren't driven</label><br/>
-</div>
-    <br/>
-<div class="question">
-  <p>They said they ... on Monday.</p>
-  <label><input type="radio" name="q10" value="0"> will come back</label><br/>
-  <label><input type="radio" name="q10" value="0"> are coming back</label><br/>
-  <label><input type="radio" name="q10" value="1"> would come back</label><br/>
-  <label><input type="radio" name="q10" value="0"> have to come back</label><br/>
-</div>
-<br/>
-
-
-    <input type="hidden" name="id"
-           th:value="${entranceTest.getId()}">
-    <input type="hidden" name="description"
-           th:value="${entranceTest.getDescription()}">
-    <input type="hidden" name="testNumber"
-           th:value="${entranceTest.getTestNumber()}">
-    <input type="hidden" name="numberOfTasks"
-           th:value="${entranceTest.getNumberOfTasks()}">
-
-      <input type="hidden" id="score" name="numberOfCorrectTasks" value="" />
-
-    <button type="submit" class="btn btn-primary" onclick="check_answers();">Составить учебный план</button>
+        <div class="question">
+            <p>She said they ... going to leave for Turkey</p>
+            <label><input type="radio" name="q1" value="0"> will</label><br/>
+            <label><input type="radio" name="q1" value="1"> were</label><br/>
+            <label><input type="radio" name="q1" value="0"> are</label><br/>
+            <label><input type="radio" name="q1" value="0"> is</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>If you ... at two, you will be there before dark.</p>
+            <label><input type="radio" name="q2" value="0"> left</label><br/>
+            <label><input type="radio" name="q2" value="1"> leave</label><br/>
+            <label><input type="radio" name="q2" value="0"> have left</label><br/>
+            <label><input type="radio" name="q2" value="0"> will leave</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>You went to the stadium with him ,..?</p>
+            <label><input type="radio" name="q3" value="0"> did you</label><br/>
+            <label><input type="radio" name="q3" value="0"> were you</label><br/>
+            <label><input type="radio" name="q3" value="1"> didn't you</label><br/>
+            <label><input type="radio" name="q3" value="0"> isn't it</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>Let me introduce ..., my name is David Smith.</p>
+            <label><input type="radio" name="q4" value="1"> myself</label><br/>
+            <label><input type="radio" name="q4" value="0"> me</label><br/>
+            <label><input type="radio" name="q4" value="0"> himself</label><br/>
+            <label><input type="radio" name="q4" value="0"> ourselves</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>I wish I ... all the exams to enter the university.</p>
+            <label><input type="radio" name="q5" value="0"> have passed</label><br/>
+            <label><input type="radio" name="q5" value="0"> didn't passed</label><br/>
+            <label><input type="radio" name="q5" value="1"> had passed</label><br/>
+            <label><input type="radio" name="q5" value="0"> hadn't passed</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>What ...?</p>
+            <label><input type="radio" name="q6" value="0"> she wants</label><br/>
+            <label><input type="radio" name="q6" value="1"> does she want</label><br/>
+            <label><input type="radio" name="q6" value="0"> is she want</label><br/>
+            <label><input type="radio" name="q6" value="0"> did she wanted</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>If you asked ... me, I would answer ... this question: I'd like to go there ... bus</p>
+            <label><input type="radio" name="q7" value="0"> -, on, at</label><br/>
+            <label><input type="radio" name="q7" value="1"> -, -, by</label><br/>
+            <label><input type="radio" name="q7" value="0"> for, -, by</label><br/>
+            <label><input type="radio" name="q7" value="0"> -, -, on</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>Alex ... here for six months</p>
+            <label><input type="radio" name="q8" value="1"> has been working</label><br/>
+            <label><input type="radio" name="q8" value="0"> is working</label><br/>
+            <label><input type="radio" name="q8" value="0"> had been working</label><br/>
+            <label><input type="radio" name="q8" value="0"> worked</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>We would never have had the accident if you ... so fast.</p>
+            <label><input type="radio" name="q9" value="0"> didn't drive</label><br/>
+            <label><input type="radio" name="q9" value="0"> haven't driven</label><br/>
+            <label><input type="radio" name="q9" value="1"> hadn't driven</label><br/>
+            <label><input type="radio" name="q9" value="0"> weren't driven</label><br/>
+        </div>
+        <br/>
+        <div class="question">
+            <p>They said they ... on Monday.</p>
+            <label><input type="radio" name="q10" value="0"> will come back</label><br/>
+            <label><input type="radio" name="q10" value="0"> are coming back</label><br/>
+            <label><input type="radio" name="q10" value="1"> would come back</label><br/>
+            <label><input type="radio" name="q10" value="0"> have to come back</label><br/>
+        </div>
+        <br/>
 
 
-  </form>
+        <input type="hidden" name="id"
+               th:value="${entranceTest.getId()}">
+        <input type="hidden" name="description"
+               th:value="${entranceTest.getDescription()}">
+        <input type="hidden" name="testNumber"
+               th:value="${entranceTest.getTestNumber()}">
+        <input type="hidden" name="numberOfTasks"
+               th:value="${entranceTest.getNumberOfTasks()}">
 
-<br>
-  <script src="/js/check_entrance_test.js"></script>
+        <input type="hidden" id="score" name="numberOfCorrectTasks" value=""/>
+
+        <button type="submit" class="btn btn-primary" onclick="check_answers();">Составить учебный план</button>
+
+
+    </form>
+    <!--Модальное окно для ошибок старт-->
+    <div th:if="${exception != null && exception != ''}" class="modal fade" id="errorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Важная информация</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" th:text="${exception}">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Модальное окно для ошибок конец-->
+
+    <br>
+    <script src="/js/check_entrance_test.js"></script>
 </div>
 </body>
 </html>

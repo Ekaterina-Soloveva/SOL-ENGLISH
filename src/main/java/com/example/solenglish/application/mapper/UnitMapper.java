@@ -18,7 +18,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class UnitMapper extends GenericMapper <Unit, UnitDTO> {
+public class UnitMapper extends GenericMapper<Unit, UnitDTO> {
 
     private final TopicRepository topicRepository;
     private final TopicService topicService;
@@ -26,9 +26,9 @@ public class UnitMapper extends GenericMapper <Unit, UnitDTO> {
     private final TestService testService;
 
     public UnitMapper(ModelMapper modelMapper,
-                      TopicService topicService,TopicRepository topicRepository,
+                      TopicService topicService, TopicRepository topicRepository,
                       TestRepository testRepository,
-                       TestService testService) {
+                      TestService testService) {
         super(Unit.class, UnitDTO.class, modelMapper);
         this.topicService = topicService;
         this.topicRepository = topicRepository;

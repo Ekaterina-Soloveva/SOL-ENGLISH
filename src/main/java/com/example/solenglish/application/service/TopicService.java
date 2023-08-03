@@ -11,10 +11,9 @@ import com.example.solenglish.application.repository.UnitRepository;
 import com.example.solenglish.application.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
+
 
 @Service
 public class TopicService extends GenericService<Topic, TopicDTO> {
@@ -33,7 +32,6 @@ public class TopicService extends GenericService<Topic, TopicDTO> {
     }
 
     /**
-     *
      * @param level
      * @return список тем, где уровень совпадет с параметром
      */
@@ -43,19 +41,8 @@ public class TopicService extends GenericService<Topic, TopicDTO> {
         return mapper.toDTOs(topicsByLevel);
     }
 
-    /**
-     *
-     * @param levels
-     * @return список тем, где уровень совпадет с параметрами
-     */
-    public List<TopicDTO> getTopicsByLevel(List<String> levels) {
-        List<Topic> topicsByLevel = levels.stream().map(e -> (Topic) topicRepository.findAllByLevelEqualsIgnoreCase(e)).toList();
-        return mapper.toDTOs(topicsByLevel);
-    }
-
 
     /**
-     *
      * @param userTopicsDone
      * @return список TopicDTO - тем, которые были пройдены
      */
@@ -65,7 +52,6 @@ public class TopicService extends GenericService<Topic, TopicDTO> {
     }
 
     /**
-     *
      * @param userTopicsDone
      * @return список TopicDTO - оставшихся тем, которые были не пройдены
      */
@@ -80,16 +66,14 @@ public class TopicService extends GenericService<Topic, TopicDTO> {
 
 
     /**
-     *
      * @return Все темы, которые есть в БД
      */
     public List<TopicDTO> getAllTopics() {
-        List<Topic> allTopics= topicRepository.findAll();
+        List<Topic> allTopics = topicRepository.findAll();
         return mapper.toDTOs(allTopics);
     }
 
     /**
-     *
      * @param topicsIds
      * @return список тем по Id
      */
@@ -97,4 +81,46 @@ public class TopicService extends GenericService<Topic, TopicDTO> {
         List<Topic> resultList = topicRepository.findAllById(topicsIds);
         return mapper.toDTOs(resultList);
     }
+
+    /**
+     * @param user
+     * @return список с количеством тем пройденных пользователем по уровням
+     */
+    public List<Integer> getUserProgress(UserDTO user) {
+
+        List<Long> allTopicsByLevel = getNumberOfTopicsByLevel(getAllTopics());
+        List<Long> allUserTopicsByLevel = getNumberOfTopicsByLevel(getUserTopicsDoneDTO(user.getTopicsDone()));
+        List<Integer> userProgressList = new ArrayList<>();
+
+        for (int i = 0; i < allTopicsByLevel.size(); i++) {
+            if (allUserTopicsByLevel.get(i) == 0) {
+                userProgressList.add(0);
+            } else if (allTopicsByLevel.get(i) == allUserTopicsByLevel.get(i)) {
+                userProgressList.add(100);
+            } else {
+                userProgressList.add((int) (allUserTopicsByLevel.get(i) * 1.0 / allTopicsByLevel.get(i) * 100));
+            }
+        }
+
+        return userProgressList;
+    }
+
+    /**
+     * @param topicsList
+     * @return список с количеством тем по уровням
+     */
+    public List<Long> getNumberOfTopicsByLevel(List<TopicDTO> topicsList) {
+        Map<String, Long> sortedMapOfElements = new TreeMap<>();
+        sortedMapOfElements.putAll(topicsList.stream()
+                .collect(Collectors.groupingBy(TopicDTO::getLevel, Collectors.counting())));
+
+        List<Long> numberOfTopicsByLevel = new ArrayList<>(sortedMapOfElements.values());
+
+        do {
+            numberOfTopicsByLevel.add(0L);
+        } while (numberOfTopicsByLevel.size() != 6);
+
+        return numberOfTopicsByLevel;
+    }
+
 }

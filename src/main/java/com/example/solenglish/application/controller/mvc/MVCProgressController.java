@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -24,8 +25,7 @@ public class MVCProgressController {
     private final TopicService topicService;
 
     public MVCProgressController(UserService userService,
-                                 TopicService topicService
-                                   ) {
+                                 TopicService topicService) {
         this.userService = userService;
         this.topicService = topicService;
     }
@@ -36,20 +36,10 @@ public class MVCProgressController {
 
         CustomUserDetails customUserDetails = (CustomUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         UserDTO user = userService.getOne(Long.valueOf(customUserDetails.getUserId()));
-        model.addAttribute("user", user);
-
-
-        List<TopicDTO> topicsDone = new ArrayList<>(topicService.getUserTopicsDoneDTO(user.getTopicsDone()));
-        List<TopicDTO> topicsPlanned = topicService.getUserTopicsPlanned(topicsDone);
-
-
-
-        model.addAttribute("topicsDone", topicsDone);
-        model.addAttribute("topicsPlanned", topicsPlanned);
-
+        List<Integer> resultList = topicService.getUserProgress(user);
+        model.addAttribute("resultList", resultList);
         return "/users/viewUserProgress";
     }
-
 
 
 }

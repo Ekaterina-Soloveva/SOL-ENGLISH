@@ -1,6 +1,8 @@
 package com.example.solenglish.application.utils;
 
 
+import com.example.solenglish.application.constants.MailConstants;
+import com.example.solenglish.application.dto.ContactFormDTO;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Component;
 
@@ -9,7 +11,8 @@ import java.util.stream.Stream;
 
 @Component
 public class MailUtils {
-    private MailUtils() {}
+    private MailUtils() {
+    }
 
 
     public static SimpleMailMessage createMailMessage(final String email,
@@ -44,6 +47,15 @@ public class MailUtils {
         mailMessage.setText(text);
         return mailMessage;
     }
+    public static SimpleMailMessage createMailMessageFromUser(final ContactFormDTO contactFormDTO) {
+        SimpleMailMessage mailMessage = new SimpleMailMessage();
+        mailMessage.setFrom(contactFormDTO.getEmail());
+        mailMessage.setTo("ekaterina_rasyuk@mail.ru");
+        mailMessage.setSubject(MailConstants.MAIL_SUBJECT_FOR_CONTACT);
+        mailMessage.setText(String.valueOf(contactFormDTO.getContent()));
+        return mailMessage;
+    }
+
 }
 
 

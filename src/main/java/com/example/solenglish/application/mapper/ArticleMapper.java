@@ -13,7 +13,7 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Component
-public class ArticleMapper extends GenericMapper <Article, ArticleDTO> {
+public class ArticleMapper extends GenericMapper<Article, ArticleDTO> {
 
     private final ArticleRepository articleRepository;
 
